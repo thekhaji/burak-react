@@ -9,6 +9,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import theme from './app/MaterialTheme';
 import './css/index.css';
 
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
