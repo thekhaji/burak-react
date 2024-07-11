@@ -1,5 +1,6 @@
 import { Container, Stack, Box, Button } from "@mui/material";
 import { NavLink } from "react-router-dom";
+import Basket from "./Basket";
 
 export function OtherNavbar(){
     const authMemeber = null;
@@ -22,6 +23,7 @@ export function OtherNavbar(){
                  (<Box className = {"hover-line"}>
                     <NavLink to={"/orders"} activeClassName={"underline"}>Orders</NavLink>
                 </Box>) : null}
+                
                 {authMemeber ?
                  (<Box className = {"hover-line"}>
                     <NavLink to={"/member-page"} activeClassName={"underline"}>My Page</NavLink>
@@ -29,6 +31,7 @@ export function OtherNavbar(){
                 <Box className = {"hover-line"}>
                     <NavLink to={"/help"} activeClassName={"underline"}>Help</NavLink>
                 </Box>
+                <Basket/>
                 {!authMemeber ? 
                     (<Box><Button variant="contained" className="login-button">Login</Button></Box>) : 
                     (<img className="user-avatar" src={"/icons/default-user.svg"} aria-haspopup={"true"} />)}
