@@ -7,8 +7,9 @@ import "../../../css/products.css"
 
 export function ProductsPage() {
     const products = useRouteMatch();
+
     console.log("proucts:", products);
-    
+
     return <div className={"products-page"}>
       <Switch>
         <Route path={`${products.path}/:productId`}>
