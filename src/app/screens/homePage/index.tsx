@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container } from "@mui/material";
 import Statistics from "./Statistics";
 import PopularDishes from "./PopularDishes";
@@ -9,7 +9,18 @@ import Events from "./Events";
 import "../../../css/home.css";
 
 export function HomePage() {
-    return <div className={"homepage"}>
+  //Selector: Store => Data
+
+
+  useEffect(()=>{
+    //Backend server data reuest => Data
+
+    //slice: Data => Store
+
+
+  },[]);
+
+  return <div className={"homepage"}>
       <Statistics/>
       <PopularDishes/>
       <NewDishes/>
