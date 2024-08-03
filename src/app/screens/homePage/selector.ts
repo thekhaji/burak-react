@@ -3,7 +3,8 @@ import { AppRootState } from "../../../lib/types/screen";
 import { HomePage } from ".";
 
 const selectHomePage = (state: AppRootState) => state.homePage; 
-//homePage daxldor  Storageni qolga olamiz, umumiy applicationimizni statini ichidagi homePageni qolga olamiz
+//homePage daxldor  Storageni qolga olamiz, 
+//umumiy applicationimizni statini ichidagi homePageni qolga olamiz
 
 export const retrievePopularDishes = createSelector(
     selectHomePage, 

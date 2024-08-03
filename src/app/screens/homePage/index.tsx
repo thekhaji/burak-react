@@ -24,6 +24,7 @@ export function HomePage() {
   const {setPopularDishes} = actionDispatch(useDispatch());
   //Selector: Store => Data
 
+  
 
   useEffect(()=>{
     //Backend server data reuest => Data
