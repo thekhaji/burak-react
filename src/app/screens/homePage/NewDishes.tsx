@@ -35,11 +35,11 @@ export default function NewDishes(){
                     <Box className={"category-title"}>Fresh Menu</Box>
                     <Stack className={"cards-frame"}>
                         <CssVarsProvider>
-                            { newDishes.length!==0 ? (newDishes.map((ele: Product)=>{
-                                const imagePath = `${serverApi}/${ele.productImages[0]}`
-                                const sizeVolume = ele.productCollection === ProductCollection.DRINK ? ele.productVolume + "l" : ele.productSize + " size" ;
+                            { newDishes.length!==0 ? (newDishes.map((product: Product)=>{
+                                const imagePath = `${serverApi}/${product.productImages[0]}`
+                                const sizeVolume = product.productCollection === ProductCollection.DRINK ? product.productVolume + "l" : product.productSize + " size" ;
                                 return (
-                                    <Card key={ele._id} variant="outlined" className={"card"}>
+                                    <Card key={product._id} variant="outlined" className={"card"}>
                                         <CardOverflow>
                                             <div className={"product-sale"}>{sizeVolume}</div>
                                             <AspectRatio ratio="1">
@@ -50,13 +50,13 @@ export default function NewDishes(){
                                             <Stack className="info">
                                                 <Stack flexDirection={"row"}>
                                                     <Typography className={"title"}>
-                                                        {ele.productName}
+                                                        {product.productName}
                                                     </Typography>
                                                     <Divider width="2" height="24" bg="#d9d9d9"/>
-                                                    <Typography className={"price"}>${ele.productPrice}</Typography>
+                                                    <Typography className={"price"}>${product.productPrice}</Typography>
                                                 </Stack>
                                                 <Stack>
-                                                    <Typography className={"views"}>{ele.productViews}
+                                                    <Typography className={"views"}>{product.productViews}
                                                         <Visibility sx={{fontSize:20, marginLeft: "5px"}}/>
                                                     </Typography>
                                                 </Stack>

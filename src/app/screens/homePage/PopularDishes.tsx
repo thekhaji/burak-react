@@ -11,13 +11,14 @@ import { CardOverflow } from "@mui/joy";
 
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
-import { retrievePopularDishes } from "./selector";
+import { retrievePopularDishes} from "./selector";
 import { Product } from "../../../lib/types/product";
 import ProductService from "../../services/ProductService";
 import { serverApi } from "../../../lib/config";
+import { ProductCollection } from "../../../lib/enums/product.enum";
 
 
-/* REDUX SLICE & SELECTOR */
+/* REDUX SLICE & SproductCTOR */
 const popularDishesRetriever = createSelector(
     retrievePopularDishes,
     (popularDishes) => ({popularDishes})
@@ -34,10 +35,10 @@ export default function PopularDishes(){
                 <Stack className={"popular-section"}>
                     <Box className={"category-title"}>Popular Dishes</Box>
                     <Stack className={"cards-frame"}>
-                        { popularDishes.length!==0 ? (popularDishes.map((ele: Product) => {
-                            const imagePath = `${serverApi}/${ele.productImages[0]}`
+                        { popularDishes.length!==0 ? (popularDishes.map((product: Product) => {
+                            const imagePath = `${serverApi}/${product.productImages[0]}`
                             return (
-                                <CssVarsProvider key={ele._id}>
+                                <CssVarsProvider key={product._id}>
                                     <Card className={"card"}>
                                         <CardCover>
                                             <img src={imagePath} alt=""/>
@@ -45,15 +46,15 @@ export default function PopularDishes(){
                                         <CardCover className={"card-cover"}/>
                                         <CardContent sx={{ justifyContent: 'flex-end' }}>
                                             <Stack flexDirection={"row"} justifyContent={"space-between"}>
-                                                <Typography level="h2" fontSize={"lg"} textColor={"#fff"} mb={1}>{ele.productName}</Typography>
+                                                <Typography level="h2" fontSize={"lg"} textColor={"#fff"} mb={1}>{product.productName}</Typography>
                                                 <Typography sx={{fontWeight: "md", color:"neutral.300", alignItems: "center", display: "flex"}}>
-                                                    {ele.productViews}
+                                                    {product.productViews}
                                                     <Visibility sx={{fontSize: 25, marginLeft: "5px"}}/>
                                                 </Typography>
                                             </Stack>
                                         </CardContent>
                                         <CardOverflow sx={{display:"flex", gap: 1.5, py:1.5, px: "var(--Card-padding)", borderTop:"1px solid", height: "60px"}}>
-                                            <Typography startDecorator={<DescriptionOutlined/>} textColor="neutral.300">{ele.productDesc}</Typography>
+                                            <Typography startDecorator={<DescriptionOutlined/>} textColor="neutral.300">{product.productDesc}</Typography>
                                         </CardOverflow>
                             </Card>
                         </CssVarsProvider>
