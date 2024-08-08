@@ -63,7 +63,7 @@ export function HomePage() {
 
     member.
     getTopUsers().then(data => {
-      setTopUsers(data)
+      setTopUsers(data)  
     })
     .catch((err) => console.log(err)
     )

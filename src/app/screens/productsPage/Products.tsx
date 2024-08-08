@@ -10,6 +10,24 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import theme from "../../MaterialTheme";
 import { url } from "inspector";
 
+import { useDispatch} from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { setProducts, setRestaurant, setChosenProduct } from "./slice";
+import { Product } from "../../../lib/types/product";
+import { useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { retrieveProducts } from "./selector";
+
+/* REDUX SLICE & SELECTOR */
+const actionDispatch = (dispatch: Dispatch) => ({
+    setProducts: (data: Product[]) => dispatch(setProducts(data)),
+    });
+
+const productsRetriever = createSelector(
+        retrieveProducts,
+        (products) => ({products})
+      );
+      
 
 const products = [
     {productName: "Cutlet", imagePath: "/img/cutlet.webp"},

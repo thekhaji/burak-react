@@ -19,15 +19,6 @@ const topUsersRetriever = createSelector(
     (topUsers) => ({topUsers})
   );
 
-
-
-const activeUsers =[
-    {memberNick: "Martin", memberImage: "/img/martin.webp"},
-    {memberNick: "Justin", memberImage: "/img/justin.webp"},
-    {memberNick: "Rose", memberImage: "/img/rose.webp"},
-    {memberNick: "Nusret", memberImage: "/img/nusret.webp"},
-
-]
  
 
 
