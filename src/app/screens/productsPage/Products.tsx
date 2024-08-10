@@ -21,6 +21,7 @@ import ProductService from "../../services/ProductService";
 import { ProductCollection } from "../../../lib/enums/product.enum";
 import { serverApi } from "../../../lib/config";
 import { useHistory } from "react-router-dom";
+import { CartItem } from "../../../lib/types/search";
 
 /* REDUX SLICE & SELECTOR */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -31,9 +32,12 @@ const productsRetriever = createSelector(
         retrieveProducts,
         (products) => ({products})
       );
+interface ProductsProps {
+        onAdd: (item: CartItem) => void;
+      }
       
-export default function Products(){
-
+export default function Products(props: ProductsProps){
+    const {onAdd} = props;
     const {setProducts} = actionDispatch(useDispatch());
     const {products} = useSelector(productsRetriever);
     const [productSearch, setProductSearch] = useState<ProductInquiry>({
@@ -173,8 +177,18 @@ export default function Products(){
                                         <Stack key={product._id} className={"product-card"} onClick={()=>chooseDishHandler(product._id)}>
                                             <Stack className={"product-img"} sx={{backgroundImage: `url(${imagePath})` }}>
                                                 <div className={"product-sale"}>{sizeVolume}</div>
-                                                <Button className={"shop-btn"}>
-                                                    <img src={"/icons/shopping-cart.svg"} ></img>
+                                                <Button className={"shop-btn"} onClick={(e) => {
+                                                    console.log("Button pressed!");
+                                                    onAdd({
+                                                        _id: product._id,
+                                                        quantity: 1,
+                                                        name: product.productName,
+                                                        price: product.productPrice,
+                                                        image: product.productImages[0]
+                                                    });
+                                                    e.stopPropagation();
+                                                }}>
+                                                    <img src={"/icons/shopping-cart.svg"} />
                                                 </Button>
                                                 <Button className={"view-btn"} sx={{}}>
                                                     <Badge badgeContent={product.productViews} color="secondary">
