@@ -178,7 +178,7 @@ export default function Products(props: ProductsProps){
                                             <Stack className={"product-img"} sx={{backgroundImage: `url(${imagePath})` }}>
                                                 <div className={"product-sale"}>{sizeVolume}</div>
                                                 <Button className={"shop-btn"} onClick={(e) => {
-                                                    console.log("Button pressed!");
+                                                    
                                                     onAdd({
                                                         _id: product._id,
                                                         quantity: 1,

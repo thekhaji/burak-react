@@ -6,11 +6,15 @@ import { CartItem } from "../../../lib/types/search";
 
 interface HomeNavbarProps {
     cartItems: CartItem[];
+    onAdd: (item: CartItem) => void;
+    onRemove: (item: CartItem) => void;
+    onDelete: (item: CartItem) => void;
+    onDeleteAll: () => void;
 }
 
 
 export function HomeNavbar(props: HomeNavbarProps){
-    const {cartItems} = props;
+    const {cartItems, onAdd, onRemove, onDelete, onDeleteAll} = props;
     const authMemeber = null;
 
     const [count, setCount] = useState<number>(0);
@@ -58,7 +62,7 @@ export function HomeNavbar(props: HomeNavbarProps){
                     <Box className = {"hover-line"}>
                         <NavLink to={"/help"} activeClassName={"underline"}>Help</NavLink>
                     </Box>
-                    <Basket cartItems={cartItems}/>
+                    <Basket cartItems={cartItems} onAdd={onAdd} onRemove={onRemove} onDelete={onDelete} onDeleteAll={onDeleteAll}/>
                     {!authMemeber ? 
                         (<Box><Button variant="contained" className="login-button">Login</Button></Box>) : 
                         (<img className="user-avatar" src={"/icons/default-user.svg"} aria-haspopup={"true"} />)}
