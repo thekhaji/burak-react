@@ -9,10 +9,12 @@ interface OtherNavbarProps {
     onRemove: (item: CartItem) => void;
     onDelete: (item: CartItem) => void;
     onDeleteAll: () => void;
+    setSignupOpen: (isOpen: boolean) => void;
+    setLoginOpen: (isOpen: boolean) => void;
 }
 
 export function OtherNavbar(props: OtherNavbarProps){
-    const {cartItems, onAdd, onRemove, onDelete, onDeleteAll} = props;
+    const {cartItems, onAdd, onRemove, onDelete, onDeleteAll, setLoginOpen, setSignupOpen} = props;
     const authMemeber = null;
     return <div className="other-navbar">
     <Container className="navbar-container">
@@ -43,7 +45,7 @@ export function OtherNavbar(props: OtherNavbarProps){
                 </Box>
                 <Basket cartItems={cartItems} onAdd={onAdd} onRemove={onRemove} onDelete={onDelete} onDeleteAll={onDeleteAll}/>
                 {!authMemeber ? 
-                    (<Box><Button variant="contained" className="login-button">Login</Button></Box>) : 
+                    (<Box><Button variant="contained" className="login-button" onClick={() => setLoginOpen(true)}>Login</Button></Box>) : 
                     (<img className="user-avatar" src={"/icons/default-user.svg"} aria-haspopup={"true"} />)}
             </Stack>
         </Stack>
