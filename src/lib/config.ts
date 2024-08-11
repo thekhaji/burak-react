@@ -2,7 +2,7 @@ import { error } from "console";
 
 export const serverApi: string = `${process.env.REACT_APP_API_URL}`;
 
-export const Message = {
+export const Messages = {
     error1: "Something went wrong!",
     error2: "Please login first!",
     error3: "Please fulfill all inputs!",
