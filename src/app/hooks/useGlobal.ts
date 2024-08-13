@@ -4,7 +4,9 @@ import { useContext } from "react";
 
 interface GlobalInterface{
     authMember: Member | null;
-    setAuthMember: (member: Member | null) => void; 
+    setAuthMember: (member: Member | null) => void;
+    orderBuilder: Date;
+    setOrderBuilder: (input: Date) => void;
 }
 
 export const GlobalContext = createContext<GlobalInterface | undefined> (

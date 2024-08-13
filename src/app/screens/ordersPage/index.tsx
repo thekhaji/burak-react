@@ -14,11 +14,11 @@ import { useDispatch} from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import {setPausedOrders, setProcessOrders, setFinishedOrders} from "./slice";
 
-import "../../../css/order.css";
 import { Order, OrderInquiry } from "../../../lib/types/order";
 import { OrderStatus } from "../../../lib/enums/order.enum";
 import OrderService from "../../services/OrderService";
-
+import { useGlobals } from "../../hooks/useGlobal";
+import "../../../css/order.css";
 
 
 /* REDUX SLICE & SELECTOR */
@@ -32,6 +32,7 @@ const actionDispatch = (dispatch: Dispatch) => ({
 
 export function OrdersPage() {
   const {setPausedOrders, setProcessOrders, setFinishedOrders} = actionDispatch(useDispatch());
+  const {orderBuilder} = useGlobals();
   const [value, setValue] = useState("1");
   const [orderInquiry, setOrderInquiry] = useState<OrderInquiry>({
     page: 1,
@@ -54,7 +55,7 @@ export function OrdersPage() {
     .then((data)=>setFinishedOrders(data))
     .catch((err)=>console.log(err));
 
-  }, [orderInquiry]);
+  }, [orderInquiry, orderBuilder]);
 
 
   const handleChange = (e: SyntheticEvent, newValue: string) => {
@@ -73,8 +74,8 @@ export function OrdersPage() {
                 </TabList>
               </Box>
               <Stack className={"order-main-content"}>
-                <TabPanel value="1"><PausedOrders/></TabPanel>
-                <TabPanel value="2"><ProcessOrders/></TabPanel>
+                <TabPanel value="1"><PausedOrders setValue={setValue}/></TabPanel>
+                <TabPanel value="2"><ProcessOrders setValue={setValue}/></TabPanel>
                 <TabPanel value="3"><FinishedOrders/></TabPanel>
               </Stack>
             </TabContext>
